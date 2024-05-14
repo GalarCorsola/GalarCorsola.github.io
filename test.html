@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="timing()">Timing</button>
+    <script>
+        function resolveAfter2Seconds(ms) {
+            return new Promise((resolve) => {
+              setTimeout(() => {
+                resolve('resolved');
+              }, ms * 1000);
+            });
+          }
+          
+          async function asyncCall() {
+            console.log('calling');
+            console.log('you attack enemy')
+            const result = await resolveAfter2Seconds(2);
+            console.log(result);
+            console.log('you get attacked')
+            const result2 = await resolveAfter2Seconds(3);
+            // Expected output: "resolved"
+            console.log('3 second delay')
+          }
+          async function timing() {
+            console.log("hi")
+            await resolveAfter2Seconds(3);
+            asyncCall();
+            await resolveAfter2Seconds(3);
+            console.log("bye")
+          }
+    </script>
+</body>
+</html>
